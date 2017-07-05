@@ -53,6 +53,7 @@ import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
@@ -418,10 +419,7 @@ public class HTTPBuilder {
     protected Object doRequest( URI uri, Method method, Object contentType, Closure configClosure )
             throws ClientProtocolException, IOException {
 
-        HttpRequestBase reqMethod;
-        try { reqMethod = method.getRequestType().newInstance();
-        // this exception should reasonably never occur:
-        } catch ( Exception e ) { throw new RuntimeException( e ); }
+        HttpRequestBase reqMethod = getRequestMethod(uri, method);
 
         reqMethod.setURI( uri );
         RequestConfigDelegate delegate = new RequestConfigDelegate( reqMethod, contentType,
@@ -432,6 +430,32 @@ public class HTTPBuilder {
         configClosure.call( reqMethod );
 
         return this.doRequest( delegate );
+    }
+
+    private static class HttpDeleteWithEntity extends HttpEntityEnclosingRequestBase {
+        public final static String METHOD_NAME = "DELETE";
+
+        @Override
+        public String getMethod() {
+            return METHOD_NAME;
+        }
+    }
+
+    public HttpRequestBase getRequestMethod(URI uri, Method method) {
+        HttpRequestBase reqMethod;
+        if (method == Method.DELETE) {
+            reqMethod = new HttpDeleteWithEntity();
+        } else {
+            try {
+                reqMethod = method.getRequestType().newInstance();
+                // this exception should reasonably never occur:
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        reqMethod.setURI(uri);
+
+        return reqMethod;
     }
 
     /**
