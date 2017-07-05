@@ -27,7 +27,7 @@ Introduction
 
   If you are familiar with the HTTP protocol, most of the above should be
   self-explanatory.  The
-  <<<{{{../apidocs/groovyx/net/http/HTTPBuilder.html#request(groovyx.net.http.Method,%20java.lang.Object,%20groovy.lang.Closure)}request()}}>>>
+  <<<{{{../apidocs/groovyx/net/http/HTTPBuilder.html#request(Method,%20java.lang.Object,%20groovy.lang.Closure)}request()}}>>>
    method accepts three parameters: a <method>,
   <content-type>, and a <request configuration closure>.  Within the
   configuration closure, we can fine-tune the parameters for this request,

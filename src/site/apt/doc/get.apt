@@ -21,7 +21,7 @@ Simplified GET Request
  for easy DOM traversal.
 
  We are also taking advantage of HTTPBuilder's
- {{{../apidocs/groovyx/net/http/HTTPBuilder.html#defaultSuccessHandler(groovyx.net.http.HttpResponseDecorator,%20java.lang.Object)}default
+ {{{../apidocs/groovyx/net/http/HTTPBuilder.html#defaultSuccessHandler(HttpResponseDecorator,%20java.lang.Object)}default
  success handler}} since we're not supplying a 'success' response handler
  closure.  The default handler defined by HTTPBuilder (which can be overridden)
  simply returns the parsed response data.
@@ -35,7 +35,7 @@ Simplified GET Request
  In this version, the <<<{{{../apidocs/groovyx/net/http/HTTPBuilder.html#get%28java.util.Map%2C%20groovy.lang.Closure%29}get()}}>>>
  method also accepts a closure, which is interpreted as the 'success' response
  handler.  A failure response (i.e. status code of 400 or greater) is still handled by the builder's
- {{{../apidocs/groovyx/net/http/HTTPBuilder.html#defaultFailureHandler(groovyx.net.http.HttpResponseDecorator)}
+ {{{../apidocs/groovyx/net/http/HTTPBuilder.html#defaultFailureHandler(HttpResponseDecorator)}
  default failure handler}}.
 
  Additionally, we are telling HTTPBuilder to parse the response as

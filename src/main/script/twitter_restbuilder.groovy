@@ -2,9 +2,9 @@
  *
  */
 
-import groovyx.net.http.RESTClient
+import com.agilefreaks.http.RESTClient
 import groovy.util.slurpersupport.GPathResult
-import static groovyx.net.http.ContentType.URLENC
+import static com.agilefreaks.http.ContentType.URLENC
 
 twitter = new RESTClient( 'https://twitter.com/statuses/' )
 twitter.auth.oauth System.getProperty('twitter.oauth.consumerKey'),

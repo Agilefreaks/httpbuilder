@@ -1,9 +1,9 @@
 // Send a Twitter update when a release is made.  Cool!
 
-import groovyx.net.http.HTTPBuilder
+import com.agilefreaks.http.HTTPBuilder
 
-import static groovyx.net.http.Method.*
-import static groovyx.net.http.ContentType.*
+import static com.agilefreaks.http.Method.*
+import static com.agilefreaks.http.ContentType.*
 
 def http = new HTTPBuilder('http://twitter.com/statuses/')
 

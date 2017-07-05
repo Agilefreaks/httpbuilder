@@ -15,7 +15,7 @@
     
     <!-- Use DEBUG to see basic request/response info;  
          Use TRACE to see headers for HttpURLClient. -->
-    <category name="groovyx.net.http.HttpURLClient">
+    <category name="com.agilefreaks.http.HttpURLClient">
         <priority value="INFO" />
     </category>
 

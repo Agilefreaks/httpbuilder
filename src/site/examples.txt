@@ -26,9 +26,9 @@ http.request( GET, JSON ) {
 END SNIPPET: overview1
 
 START SNIPPET: doc1
-import groovyx.net.http.HTTPBuilder
-import static groovyx.net.http.Method.GET
-import static groovyx.net.http.ContentType.TEXT
+import HTTPBuilder
+import static Method.GET
+import static ContentType.TEXT
 
 // initialze a new builder and give a default URL
 def http = new HTTPBuilder( 'http://www.google.com/search' )
@@ -64,9 +64,9 @@ END SNIPPET: doc2
 
 
 START SNIPPET: doc3
-import groovyx.net.http.HTTPBuilder
-import static groovyx.net.http.Method.GET
-import static groovyx.net.http.ContentType.JSON
+import HTTPBuilder
+import static Method.GET
+import static ContentType.JSON
 
 def http = new HTTPBuilder( 'http://ajax.googleapis.com' )
 http.request( GET, JSON ) {
@@ -147,8 +147,8 @@ END SNIPPET: get3
 
 
 START SNIPPET: post1
-import groovyx.net.http.HTTPBuilder
-import static groovyx.net.http.ContentType.URLENC
+import HTTPBuilder
+import static ContentType.URLENC
 
 def http = new HTTPBuilder( 'http://restmirror.appspot.com/' )
 def postBody = [name: 'bob', title: 'construction worker'] // will be url-encoded
@@ -164,9 +164,9 @@ END SNIPPET: post1
 
 
 START SNIPPET: post2
-import groovyx.net.http.HTTPBuilder
-import static groovyx.net.http.ContentType.*
-import static groovyx.net.http.Method.*
+import HTTPBuilder
+import static ContentType.*
+import static Method.*
 
 def http = new HTTPBuilder('http://restmirror.appspot.com/')
 http.request( POST ) {
@@ -182,9 +182,9 @@ http.request( POST ) {
 END SNIPPET: post2
 
 START SNIPPET: post3
-import groovyx.net.http.HTTPBuilder
-import static groovyx.net.http.ContentType.*
-import static groovyx.net.http.Method.*
+import HTTPBuilder
+import static ContentType.*
+import static Method.*
 
 def http = new HTTPBuilder('http://restmirror.appspot.com/')
 http.request( POST ) {
@@ -202,7 +202,7 @@ END SNIPPET: post3
 START SNIPPET: xml1
 @Grab(group='org.codehaus.groovy.modules.http-builder', module='http-builder', version='0.7')
 
-import groovyx.net.http.HTTPBuilder
+import HTTPBuilder
 
 def http = new HTTPBuilder( 'http://api.openweathermap.org/data/2.5/' )
 
@@ -226,8 +226,8 @@ http.request( POST, XML ) {
 END SNIPPET: xml2
 
 START SNIPPET: xml3
-import groovyx.net.http.RESTClient
-import static groovyx.net.http.ContentType.*
+import RESTClient
+import static ContentType.*
 
 def weather = new RESTClient( 'http://api.openweathermap.org/data/2.5/' )
 def resp = weather.get( path: 'weather', query:[q: 'London', mode: 'xml'], contentType: TEXT,
@@ -246,7 +246,7 @@ END SNIPPET: xml4
 START SNIPPET: json1
 @Grab(group='org.codehaus.groovy.modules.http-builder', module='http-builder', version='0.7' )
 
-import groovyx.net.http.HTTPBuilder
+import HTTPBuilder
 
 def http = new HTTPBuilder( 'http://api.openweathermap.org/data/2.5/' )
 
@@ -293,8 +293,8 @@ START SNIPPET: rest1
 @Grab(group='oauth.signpost', module='signpost-core', version='1.2.1.2')
 @Grab(group='oauth.signpost', module='signpost-commonshttp4', version='1.2.1.2')
 
-import groovyx.net.http.RESTClient
-import static groovyx.net.http.ContentType.*
+import RESTClient
+import static ContentType.*
 
 def twitter = new RESTClient( 'https://api.twitter.com/1.1/statuses/' )
 // twitter auth omitted
@@ -340,7 +340,7 @@ println "Test tweet ID ${resp.data.id} was deleted."
 END SNIPPET: rest4
 
 START SNIPPET: uri1
-import groovyx.net.http.URIBuilder
+import URIBuilder
 
 def uri = new URIBuilder( 'http://www.google.com/one/two?a=1#frag' )
 
@@ -369,7 +369,7 @@ assert uri.toString() == 'https://localhost:8080/six?a=1#asdf2'
 END SNIPPET: uri1
 
 START SNIPPET: uri2
-def uri = new groovyx.net.http.URIBuilder( 'http://localhost?a=1&b=2' )
+def uri = new URIBuilder( 'http://localhost?a=1&b=2' )
 assert uri.query instanceof Map
 assert uri.query.a == '1'
 assert uri.query.b == '2'
@@ -400,8 +400,8 @@ assert uri.toString().equals( "https://localhost/three?a=1#frag" );
 END SNIPPET: uri3
 
 START SNIPPET: async1
-import groovyx.net.http.AsyncHTTPBuilder
-import static groovyx.net.http.ContentType.HTML
+import AsyncHTTPBuilder
+import static ContentType.HTML
 
 def http = new AsyncHTTPBuilder(
                 poolSize : 4,
@@ -430,7 +430,7 @@ END SNIPPET: async1
 START SNIPPET: urlclient1
 @Grab(group='org.codehaus.groovy.modules.http-builder', module='http-builder', version='0.7')
 
-import groovyx.net.http.HttpURLClient
+import HttpURLClient
 
 def http = new HttpURLClient( url: 'http://api.openweathermap.org/data/2.5/' )
 
@@ -451,8 +451,8 @@ println "The temperature is ${resp.data.temperature.@value.text()} degrees Kelvi
 END SNIPPET: urlclient1
 
 START SNIPPET: ssl1
-import groovyx.net.http.HTTPBuilder
-import static groovyx.net.http.Method.HEAD
+import HTTPBuilder
+import static Method.HEAD
 
 import java.security.KeyStore
 import org.apache.http.conn.scheme.Scheme
@@ -482,7 +482,7 @@ END SNIPPET: ssl2
 
 START SNIPPET: contenttype1
 import au.com.bytecode.opencsv.CSVReader
-import groovyx.net.http.ParserRegistry
+import ParserRegistry
 
 http.parser.'text/csv' = { resp ->
   return new CSVReader( new InputStreamReader( resp.entity.content,
@@ -523,9 +523,9 @@ END SNIPPET: contenttype4
 
 
 START SNIPPET: handler1
-import groovyx.net.http.HTTPBuilder
-import static groovyx.net.http.Method.GET
-import static groovyx.net.http.ContentType.TEXT
+import HTTPBuilder
+import static Method.GET
+import static ContentType.TEXT
 
 new HTTPBuilder('http://www.google.com/').request(GET) { req ->
 
@@ -648,7 +648,7 @@ END SNIPPET: download2
 START SNIPPET: download3
 @Grab(group='org.codehaus.groovy.modules.http-builder', module='http-builder', version='0.7' )
 
-def http = new groovyx.net.http.HTTPBuilder('http://www.codehaus.org')
+def http = new HTTPBuilder('http://www.codehaus.org')
 // ....
 END SNIPPET: download3
 
